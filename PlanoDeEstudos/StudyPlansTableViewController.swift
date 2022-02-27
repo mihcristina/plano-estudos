@@ -36,13 +36,14 @@ class StudyPlansTableViewController: UITableViewController {
         let studyPlan = sm.studyPlans[indexPath.row]
         cell.textLabel?.text = studyPlan.section
         cell.detailTextLabel?.text = dateFormatter.string(from: studyPlan.date)
+        
         return cell
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            sm.removePlan(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .bottom)
         }
     }
-
-
 }
